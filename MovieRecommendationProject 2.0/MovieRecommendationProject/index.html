@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunnypix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <h1>BunnyPix</h1>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search movies...">
+        </div>
+        <div class="auth-options">
+            <!-- Modal Trigger Button -->
+            <button id="open-modal-btn">Add Movie</button>
+
+            <!-- The Modal -->
+            <div id="movie-modal" class="modal">
+                <div class="modal-content">
+                    <span id="close-modal-btn" class="close">&times;</span>
+                    <h2>Add New Movie</h2>
+                    <form id="movie-form">
+                        <input type="text" id="movie-title" placeholder="Movie Title" required>
+                        <textarea id="movie-description" placeholder="Description" required></textarea>
+                        <input type="number" id="movie-release-year" placeholder="Release Year" required>
+                        <input type="number" id="movie-rating" placeholder="Rating" required>
+                        <input type="text" id="movie-image-url" placeholder="Image URL" required>
+                        <select id="movie-category">
+                            <option value="upcoming">Upcoming</option>
+                            <option value="top-rated">Top Rated</option>
+                            <option value="latest">Latest</option>
+                            <option value="english">English</option>
+                            <option value="hindi">Hindi</option>
+                        </select>
+                        <button type="submit">Add Movie</button>
+                    </form>
+                </div>
+            </div>
+
+            <button onclick="showLogin()">Login</button>
+            <button onclick="showSignup()">Signup</button>
+            <button onclick="logout()" id="logoutButton" style="display: none;">Logout</button>
+        </div>
+    </header>
+
+    <div id="carousel-container">
+        <div class="carousel">
+            <button class="carousel-button prev" onclick="moveCarousel('prev')">❮</button>
+            <div class="carousel-images" id="carousel-images">
+                <!-- Movie images will be injected here -->
+            </div>
+            <button class="carousel-button next" onclick="moveCarousel('next')">❯</button>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div id="movies-container" class="movie-section"></div>
+    <div id="player"></div>
+
+
+    <!-- Modal for editing a movie -->
+    <div id="editModal">
+        <div>
+            <!-- Close Button -->
+            <button class="close-btn" onclick="closeModal()">X</button>
+
+            <h2>Edit Movie</h2>
+
+            <input type="hidden" id="editId" />
+            <input type="text" id="editTitle" placeholder="Title" />
+            <input type="text" id="editDescription" placeholder="Description" />
+            <input type="number" id="editYear" placeholder="Release Year" />
+            <input type="number" step="0.1" id="editRating" placeholder="Rating" />
+
+            <button onclick="saveMovie()">Save</button>
+            <button onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 BunnyPix. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLogin()">&times;</span>
+            <h2>Login</h2>
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignup()">&times;</span>
+            <h2>Signup</h2>
+            <input type="text" id="signupUsername" placeholder="Username">
+            <input type="password" id="signupPassword" placeholder="Password">
+            <select id="userRole">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+            <button onclick="signup()">Signup</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
